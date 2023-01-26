@@ -1,0 +1,14 @@
+"""
+asgiref==3.5.2
+Django==4.1
+django-admin-interface==0.20.0
+django-colorfield==0.7.2
+django-crispy-forms==1.14.0
+django-flat-responsive==2.0
+django-flat-theme==1.1.4
+djangorestframework==3.14.0
+Pillow==9.2.0
+pytz==2022.2.1
+six==1.16.0
+sqlparse==0.4.2
+"""

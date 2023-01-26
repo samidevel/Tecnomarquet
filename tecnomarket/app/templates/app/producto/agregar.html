@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+{% block contenido %}
+{% load crispy_forms_tags %}
+
+
+{%block js%}
+<script>
+	function agregar_producto(id)
+	Swal.fire({
+		'title':'Estas seguro',
+		'text':'Agregado correctamete',
+		'icon':'success'
+	})
+	
+</script>
+
+{%endblock%}
+
+<br><br>
+
+		<div class="row">
+			<div class="col-12 col-md-6 offset-md-3">
+				<div class="card">
+					<div class="card-body">
+
+						<h2>Agregar Nuevo Producto</h2>
+
+				<form action="" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{ 	form | crispy }}
+
+					<div class="d-flex justify-content-end">
+						<input type="reset" value="cancelar" class="btn btn-primary">
+						<!--<a href="{% url 'listar_producto' %}" class="btn btn-primary">-->
+						&nbsp;
+						<input type="submit" value="guardar" class="btn btn-primary">
+						<!--<a href="{% url 'agregar_producto' %}" class="btn btn-danger">guardar</a>-->
+
+					</div>
+				</form>
+				{{mensaje}}
+			</div>
+		</div>
+
+{%endblock%}

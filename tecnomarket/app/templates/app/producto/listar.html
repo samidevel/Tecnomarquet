@@ -1,0 +1,71 @@
+{%extends 'app/base.html'%}
+{%block contenido%}
+{%load humanize%}
+
+
+{%block js%}
+<script>
+	function eliminarProducto(id)
+	Swal.fire({
+		'title':'Estas seguro',
+		'text':'esta accion no se puede deshacer',
+		'icon':'question'
+	})
+	
+</script>
+
+{%endblock%}
+
+<br><br>
+<div class="card">
+	<div class="card-body">
+		<h2>Listado de productos</h2>
+<table class="table table-striped table-hover table-responsive-sm">
+	<tr>
+		<th>Nombre</th>
+		<th>Precio</th>
+		<th>Marca</th>
+		<th>Es nuevo</th>
+		<th>Opciones</th>
+	</tr>
+
+		{% for p in entity %}
+
+			<tr>
+				<td>{{p.nombre |title}}</td>
+				<td>{{p.precio | intcomma}}</td>
+				<td>{{p.marca|title}}</td>
+				
+				<td>
+					{%if p.nuevo%}
+					SI
+					{%else%}
+					NO
+					{%endif%}
+
+				</td>
+				
+				<td>
+					{%if perms.app.change_producto%}
+					<a href="{% url 'modificar_producto' p.id %}" class="btn btn-info">Modificar</a>
+					{%endif%}
+					<!--<a href="#" onclick="eliminarProducto({{ p.id }})" class="btn btn-danger">Eliminar</a>-->
+						
+					{%if perms.app.delete_producto%}
+					<a href="{% url 'eliminar_producto/<id>/' p.id %}" class="btn btn-danger">Eliminar</a>
+					{%endif%}
+				</td>
+			</tr>
+
+		{%endfor%}
+
+</table>
+
+<div>
+	{%include 'app/paginator.html'%}
+</div>
+
+{%endblock%}
+	</div>
+	
+</div>
